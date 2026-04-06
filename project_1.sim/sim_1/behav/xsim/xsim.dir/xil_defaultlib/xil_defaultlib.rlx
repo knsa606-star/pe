@@ -1,0 +1,10 @@
+0.7
+2020.2
+Oct 14 2022
+05:20:55
+C:/Users/sarth/Downloads/project_1/project_1.sim/sim_1/behav/xsim/glbl.v,1665704903,verilog,,,,glbl,,,,,,,,
+C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/bias_memory.v,1774322781,verilog,,C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/weight_memory.v,,bias_memory,,,,,,,,
+C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/pe_unit.v,1774167735,verilog,,C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/tb_pe_unit.v,,pe_unit,,,,,,,,
+C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/tb_pe_unit.v,1774081753,verilog,,,,tb_pe_unit,,,,,,,,
+C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/tb_weight_bias.v,1774320825,verilog,,,,tb_weight_bias,,,,,,,,
+C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/weight_memory.v,1774322806,verilog,,C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/tb_weight_bias.v,,weight_memory,,,,,,,,

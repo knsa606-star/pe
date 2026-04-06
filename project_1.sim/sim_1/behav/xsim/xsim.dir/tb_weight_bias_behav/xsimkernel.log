@@ -1,0 +1,7 @@
+Running: xsim.dir/tb_weight_bias_behav/xsimk.exe -simmode gui -wdb tb_weight_bias_behav.wdb -simrunnum 0 -socket 50619
+Design successfully loaded
+Design Loading Memory Usage: 9896 KB (Peak: 9896 KB)
+Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 10652 KB (Peak: 10652 KB)
+Simulation CPU Usage: 46 ms

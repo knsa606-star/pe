@@ -1,0 +1,27 @@
+Time resolution is 1 ps
+Loading WEIGHT memory file: weights.mem
+First WEIGHT value = 0001
+Second WEIGHT value = 0002
+Third WEIGHT value = 00a0
+Loading BIAS memory file: bias.mem
+First BIAS value = 0007
+Second BIAS value = 0008
+Third BIAS value = 000a
+
+=== WEIGHT & BIAS MEMORY TEST START ===
+
+Weight[0] = 0001
+Weight[1] = 0002
+Weight[2] = 00a0
+Weight[3] = 0f00
+Weight[4] = ffff
+Weight[5] = 1234
+Weight[6] = abcd
+Weight[7] = xxxx
+Bias[0] = 0007
+Bias[1] = 0008
+Bias[2] = 000a
+Bias[3] = 0010
+
+=== TEST COMPLETE ===
+$finish called at time : 140 ns : File "C:/Users/sarth/Downloads/project_1/project_1.srcs/sources_1/new/tb_weight_bias.v" Line 88
