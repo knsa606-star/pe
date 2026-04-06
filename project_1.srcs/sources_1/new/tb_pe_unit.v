@@ -19,6 +19,8 @@ module tb_pe_unit();
 
     // Controls
     reg  [2:0] cfg_alu;
+    reg        mac_clear;
+    reg        bias_en;
     reg        ld_en;
     reg        st_en;
     reg  [1:0] ldm_sel;
@@ -41,6 +43,8 @@ module tb_pe_unit();
         .weight_in(weight_in),
         .bias_in(bias_in),
         .cfg_alu(cfg_alu),
+        .mac_clear(mac_clear),
+        .bias_en(bias_en),
         .ld_en(ld_en),
         .st_en(st_en),
         .ldm_sel(ldm_sel),
@@ -62,6 +66,8 @@ module tb_pe_unit();
         weight_in = 0;
         bias_in = 0;
         cfg_alu = 3'b000;
+        mac_clear = 0;
+        bias_en = 0;
         ld_en = 0; st_en = 0;
         ldm_sel = 0;
         ldm_addr = 0;

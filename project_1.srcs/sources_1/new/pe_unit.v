@@ -23,13 +23,13 @@
 // ===================================================================
 //  PE Unit for MINA
 //  4 Local Data Memories (LDM0..LDM3)
-//  ALU supporting MAC, ADD, MAXPOOL, RELU
+//  ALU supporting MAC, ADD, MAXPOOL, RELU, ADD_BIAS
 //  LSU for load/store from/to internal bus
 // ===================================================================
 
 module pe_unit #(
     parameter PIXW  = 16,
-    parameter ADDRW = 10      // depth ? 1280/40 = 32 entries (paper)
+    parameter ADDRW = 10      // depth - 1280/40 = 32 entries (paper)
 )(
     input  wire                   clk,
     input  wire                   rst,
@@ -45,11 +45,16 @@ module pe_unit #(
 
     // ALU control (from PEA controller)
     input  wire [2:0] cfg_alu,
-    // 000 = MAC
-    // 001 = ADD
-    // 010 = MAXPOOL
-    // 011 = RELU
-    // 100 = PASS THROUGH
+    // 000 = MAC       (accumulate weight*px0 into mac_accum)
+    // 001 = ADD       (px0 + px1)
+    // 010 = MAXPOOL   (max(px0, px1))
+    // 011 = RELU      (max(0, px0))
+    // 100 = PASS      (pass px0 through)
+    // 101 = ADD_BIAS  (mac_accum + bias_in, once after all MACs)
+
+    // MAC accumulator control
+    input  wire        mac_clear,  // synchronous clear of mac_accum
+    input  wire        bias_en,    // enable bias addition in ADD_BIAS op
 
     // LSU control
     input  wire        ld_en,
@@ -103,20 +108,24 @@ module pe_unit #(
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             mac_accum <= 0;
+            alu_out   <= 0;
+        end else if (mac_clear) begin
+            mac_accum <= 0;
         end else begin
             case (cfg_alu)
 
                 // -------------------------
-                // MAC: (weight * px0) + acc
+                // MAC: accumulate (weight * px0) — bias NOT added here
                 // -------------------------
-                // MAC operation
                 3'b000: begin
                     mac_accum <= mac_accum + (weight_in * px0);
-                    alu_out   <= mac_accum + (weight_in * px0) + bias_in;
+                    alu_out   <= mac_accum + (weight_in * px0);
                 end
 
-
-
+                // -------------------------
+                // ADD_BIAS: add bias ONCE after all MACs complete
+                // -------------------------
+                3'b101: alu_out <= bias_en ? (mac_accum + bias_in) : mac_accum;
 
                 // -------------------------
                 // ADD
