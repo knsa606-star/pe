@@ -1,0 +1,30 @@
+// context.mem — Layer parameter ROM for MINA Mini-InceptionNet test config
+// 8 entries x 64 bits each (big-endian hex, 16 chars per line)
+// Bit layout per entry:
+//   [63]    = unused
+//   [62:60] = op_type  (0=CONV,1=MAXPOOL,2=ADD,3=RELU,4=GAP)
+//   [59:56] = kernel_size_J
+//   [55:48] = in_channels_K
+//   [47:40] = out_channels_N
+//   [39:30] = out_length_Y
+//   [29:28] = stride
+//   [27:12] = weight_base_addr
+//   [11:4]  = bias_base_addr
+//   [3:0]   = residual_source
+//
+// Layer 0: CONV  J=7 K=1  N=8  Y=320 stride=1 w_base=0   b_base=0
+0701085010000000
+// Layer 1: RELU  J=1 K=0  N=0  Y=320 stride=1
+3100005010000000
+// Layer 2: MAXPOOL J=2 K=0 N=0 Y=160 stride=2
+1200002820000000
+// Layer 3: CONV  J=3 K=8  N=16 Y=160 stride=1 w_base=56  b_base=8
+0308102810038080
+// Layer 4: RELU  J=1 K=0  N=0  Y=160 stride=1
+3100002810000000
+// Layer 5: CONV  J=5 K=8  N=16 Y=160 stride=1 w_base=440 b_base=24
+05081028101B8180
+// Layer 6: RELU  J=1 K=0  N=0  Y=160 stride=1
+3100002810000000
+// Layer 7: ADD   J=1 K=32 N=32 Y=160 stride=1 residual_source=4
+2120202810000004

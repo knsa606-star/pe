@@ -29,7 +29,7 @@
 module weight_memory #(
     parameter DATA_WIDTH = 16,
     parameter DEPTH      = 256,
-    parameter MEMFILE = "C:/Users/sarth/Downloads/project_1/project_1.srcs/sim_1/new/weights.mem"
+    parameter MEMFILE = "./weights.mem"
 )(
     input  wire clk,
     input  wire [$clog2(DEPTH)-1:0] addr,

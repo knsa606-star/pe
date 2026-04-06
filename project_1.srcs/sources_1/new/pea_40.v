@@ -19,6 +19,20 @@ module pea_40 #(
 
     input  wire [2:0]              cfg_alu,
 
+    // Pixel base address — controller drives this to slide the window
+    input  wire [8:0]              pixel_base_addr,
+
+    // MAC accumulator control (broadcast to all PEs)
+    input  wire                    mac_clear,
+    input  wire                    bias_en,
+
+    // LSU control (broadcast to all PEs, driven by controller)
+    input  wire                    ld_en,
+    input  wire                    st_en,
+    input  wire [1:0]              ldm_sel,
+    input  wire [ADDRW-1:0]        ldm_addr,
+    input  wire [PIXW-1:0]         bus_in,
+
     output wire [PIXW-1:0]         bus_out [0:M-1]
 );
 
@@ -29,11 +43,15 @@ module pea_40 #(
     wire [PIXW-1:0] pixel_routed [0:M-1];
 
     // ----------------------------------------------------
-    // Create 40 pixel memories (each PE gets one sample)
+    // Create 40 pixel memories (each PE reads one sample)
+    // pixel address = pixel_base_addr + PE_index
     // ----------------------------------------------------
     genvar i;
     generate
         for (i = 0; i < M; i = i + 1) begin : PIX_MEM_BLOCK
+
+            wire [8:0] pix_addr_w;
+            assign pix_addr_w = pixel_base_addr + i;
 
             pixel_memory #(
                 .DATA_WIDTH(16),
@@ -41,7 +59,7 @@ module pea_40 #(
                 .MEMFILE("./ecg.mem")
             ) U_PIX (
                 .clk(clk),
-                .addr(i),                 // each PE reads different sample
+                .addr(pix_addr_w),
                 .data_out(pixel_in[i])
             );
 
@@ -75,12 +93,15 @@ module pea_40 #(
                 .bias_in(bias_in),
                 .cfg_alu(cfg_alu),
 
-                .ld_en(1'b0),
-                .st_en(1'b0),
-                .ldm_sel(2'd0),
-                .ldm_addr(0),
+                .mac_clear(mac_clear),
+                .bias_en(bias_en),
 
-                .bus_in(16'd0),
+                .ld_en(ld_en),
+                .st_en(st_en),
+                .ldm_sel(ldm_sel),
+                .ldm_addr(ldm_addr),
+
+                .bus_in(bus_in),
                 .bus_out(bus_out[i])
             );
 
