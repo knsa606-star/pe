@@ -16,12 +16,12 @@
 module mina_top #(
     parameter M          = 40,
     parameter PIXW       = 16,
-    parameter NUM_LAYERS = 8,
+    parameter NUM_LAYERS = 16,
     parameter ADDRW      = 8,     // LDM address width
-    parameter WADDRW     = 11,    // weight memory: 2048 entries
-    parameter BADDRW     = 6,     // bias   memory: 64 entries
-    parameter WDEPTH     = 2048,
-    parameter BDEPTH     = 64,
+    parameter WADDRW     = 13,    // weight memory: 8192 entries
+    parameter BADDRW     = 7,     // bias   memory: 128 entries
+    parameter WDEPTH     = 8192,
+    parameter BDEPTH     = 128,
     parameter CTX_MEMFILE = "./context.mem",
     parameter W_MEMFILE   = "./weights.mem",
     parameter B_MEMFILE   = "./bias.mem"

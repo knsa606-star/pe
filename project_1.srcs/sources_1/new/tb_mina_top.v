@@ -18,12 +18,12 @@ module tb_mina_top();
     mina_top #(
         .M          (M),
         .PIXW       (PIXW),
-        .NUM_LAYERS (8),
+        .NUM_LAYERS (16),
         .ADDRW      (8),
-        .WADDRW     (11),
-        .BADDRW     (6),
-        .WDEPTH     (2048),
-        .BDEPTH     (64),
+        .WADDRW     (13),
+        .BADDRW     (7),
+        .WDEPTH     (8192),
+        .BDEPTH     (128),
         .CTX_MEMFILE("./context.mem"),
         .W_MEMFILE  ("./weights.mem"),
         .B_MEMFILE  ("./bias.mem")
@@ -52,10 +52,10 @@ module tb_mina_top();
         start = 1;
         #10 start = 0;
 
-        // Wait for done (up to 10000 cycles)
+        // Wait for done (up to 100000 cycles)
         begin : wait_done
             integer timeout_cnt;
-            for (timeout_cnt = 0; timeout_cnt < 10000; timeout_cnt = timeout_cnt + 1) begin
+            for (timeout_cnt = 0; timeout_cnt < 100000; timeout_cnt = timeout_cnt + 1) begin
                 @(posedge clk);
                 if (done) disable wait_done;
             end
@@ -64,7 +64,7 @@ module tb_mina_top();
         if (done)
             $display("Computation DONE!");
         else
-            $display("TIMEOUT — done not asserted within 10000 cycles");
+            $display("TIMEOUT — done not asserted within 100000 cycles");
 
         // Print PE[0] result (representative output)
         $display("result_out (PE[0]) = 0x%04h (%0d)", result_out, result_out);

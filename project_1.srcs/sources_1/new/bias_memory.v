@@ -5,7 +5,7 @@
 `timescale 1ns / 1ps
 module bias_memory #(
     parameter DATA_WIDTH = 16,
-    parameter DEPTH      = 64,
+    parameter DEPTH      = 128,
     parameter MEMFILE    = "./bias.mem"
 )(
     input  wire clk,

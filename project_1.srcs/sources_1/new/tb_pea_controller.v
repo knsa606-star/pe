@@ -12,10 +12,10 @@
 
 module tb_pea_controller();
 
-    localparam NUM_LAYERS = 8;
+    localparam NUM_LAYERS = 16;
     localparam ADDRW      = 8;
-    localparam WADDRW     = 11;
-    localparam BADDRW     = 6;
+    localparam WADDRW     = 13;
+    localparam BADDRW     = 7;
 
     reg clk, rst, start;
 
@@ -124,8 +124,8 @@ module tb_pea_controller();
         #10 start = 1;
         #10 start = 0;
 
-        // Wait up to 5000 cycles for done
-        repeat(5000) @(posedge clk);
+        // Wait up to 50000 cycles for done
+        repeat(50000) @(posedge clk);
 
         if (!done)
             $display("TIMEOUT — done not asserted");
