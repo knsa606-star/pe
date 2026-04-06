@@ -14,9 +14,9 @@
 //
 // Layer  0: CONV  J=7 K=1  N=8  Y=320 stride=1 w_base=0      b_base=0   res=0
 0701085010000000
-// Layer  1: RELU  J=0 K=0  N=0  Y=320 stride=1
+// Layer  1: RELU  J=0 K=0  N=0  Y=320 stride=1 w_base=0 b_base=0 res=0 (J/K/N unused)
 3000005010000000
-// Layer  2: MAXPOOL J=2 K=0 N=0 Y=160 stride=2
+// Layer  2: MAXPOOL J=2 K=0 N=0 Y=160 stride=2 w_base=0 b_base=0 res=0
 1200002820000000
 // Layer  3: CONV  J=1 K=8  N=8  Y=160 stride=1 w_base=56(0x38)   b_base=8
 0108082810038080
@@ -26,7 +26,7 @@
 0508082810138180
 // Layer  6: CONV  J=1 K=8  N=8  Y=160 stride=1 w_base=632(0x278) b_base=32(0x20)
 0108082810278200
-// Layer  7: RELU  J=0 K=0  N=0  Y=160 stride=1
+// Layer  7: RELU  J=0 K=0  N=0  Y=160 stride=1 w_base=0 b_base=0 res=0 (J/K/N unused)
 3000002810000000
 // Layer  8: CONV  J=1 K=32 N=16 Y=160 stride=1 w_base=696(0x2B8)  b_base=40(0x28)
 01201028102B8280
@@ -36,11 +36,11 @@
 0520102810AB8480
 // Layer 11: CONV  J=1 K=32 N=16 Y=160 stride=1 w_base=5304(0x14B8) b_base=88(0x58)
 01201028114B8580
-// Layer 12: RELU  J=0 K=0  N=0  Y=160 stride=1
+// Layer 12: RELU  J=0 K=0  N=0  Y=160 stride=1 w_base=0 b_base=0 res=0 (J/K/N unused)
 3000002810000000
-// Layer 13: ADD   residual_source=7
+// Layer 13: ADD   J=0 K=0 N=0 Y=160 stride=1 w_base=0 b_base=0 res=7 (residual_source=7)
 2000002810000007
-// Layer 14: RELU  J=0 K=0  N=0  Y=160 stride=1
+// Layer 14: RELU  J=0 K=0  N=0  Y=160 stride=1 w_base=0 b_base=0 res=0 (J/K/N unused)
 3000002810000000
 // Layer 15: NOP   op=7 -> undefined -> default -> ST_NEXT_LAYER -> ST_DONE
 7000000000000000
