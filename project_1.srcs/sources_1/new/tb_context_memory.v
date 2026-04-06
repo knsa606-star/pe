@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 // ====================================================================
 // Testbench: context_memory
-// Reads all 8 layer entries and prints decoded parameters
+// Reads all 16 layer entries and prints decoded parameters
 // ====================================================================
 
 module tb_context_memory();
 
-    localparam NUM_LAYERS = 8;
+    localparam NUM_LAYERS = 16;
 
     reg clk;
     reg [$clog2(NUM_LAYERS)-1:0] layer_index;

@@ -23,12 +23,12 @@
 // ====================================================================
 
 module pea_controller #(
-    parameter NUM_LAYERS = 8,
+    parameter NUM_LAYERS = 16,
     parameter M          = 40,    // number of PEs
     parameter PIXW       = 16,
     parameter ADDRW      = 8,     // LDM address width inside PE
-    parameter WADDRW     = 11,    // weight memory address width (2048 entries)
-    parameter BADDRW     = 6      // bias   memory address width (64 entries)
+    parameter WADDRW     = 13,    // weight memory address width (8192 entries)
+    parameter BADDRW     = 7      // bias   memory address width (128 entries)
 )(
     input  wire                  clk,
     input  wire                  rst,

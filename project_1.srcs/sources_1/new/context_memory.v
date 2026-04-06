@@ -18,7 +18,7 @@
 // ====================================================================
 
 module context_memory #(
-    parameter NUM_LAYERS = 8,
+    parameter NUM_LAYERS = 16,
     parameter MEMFILE    = "./context.mem"
 )(
     input  wire                            clk,

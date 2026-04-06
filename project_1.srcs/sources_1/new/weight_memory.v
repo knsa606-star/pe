@@ -28,7 +28,7 @@
 `timescale 1ns / 1ps
 module weight_memory #(
     parameter DATA_WIDTH = 16,
-    parameter DEPTH      = 256,
+    parameter DEPTH      = 8192,
     parameter MEMFILE = "./weights.mem"
 )(
     input  wire clk,
