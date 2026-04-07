@@ -18,7 +18,7 @@ module tb_mina_top();
     mina_top #(
         .M          (M),
         .PIXW       (PIXW),
-        .NUM_LAYERS (16),
+        .NUM_LAYERS (8),
         .ADDRW      (8),
         .WADDRW     (13),
         .BADDRW     (7),
@@ -61,13 +61,23 @@ module tb_mina_top();
             end
         end
 
-        if (done)
+        if (done) begin
             $display("Computation DONE!");
-        else
-            $display("TIMEOUT — done not asserted within 100000 cycles");
+            $display("result_out (PE[0]) = 0x%04h (%0d)", result_out, result_out);
 
-        // Print PE[0] result (representative output)
-        $display("result_out (PE[0]) = 0x%04h (%0d)", result_out, result_out);
+            // Show PE[0] internal state
+            $display("\nPE[0] mac_accum = %0d", DUT.U_PEA.PE_ARRAY[0].U_PE.mac_accum);
+            $display("PE[0] alu_out   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.alu_out);
+            $display("PE[0] LDM0[0]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[0]);
+            $display("PE[0] LDM0[1]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[1]);
+            $display("PE[0] LDM0[2]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[2]);
+            $display("PE[0] LDM0[3]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[3]);
+            $display("PE[0] LDM0[4]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[4]);
+            $display("PE[0] LDM0[5]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[5]);
+            $display("PE[0] LDM0[6]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[6]);
+            $display("PE[0] LDM0[7]   = 0x%04h", DUT.U_PEA.PE_ARRAY[0].U_PE.LDM0[7]);
+        end else
+            $display("TIMEOUT — done not asserted within 100000 cycles");
 
         // Print outputs from all 40 PEs via hierarchical reference
         $display("\nAll PE outputs:");

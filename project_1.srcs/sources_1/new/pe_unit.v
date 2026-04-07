@@ -91,10 +91,10 @@ module pe_unit #(
     always @(posedge clk) begin
         if (st_en) begin
             case(ldm_sel)
-                2'd0: LDM0[ldm_addr] <= bus_in;
-                2'd1: LDM1[ldm_addr] <= bus_in;
-                2'd2: LDM2[ldm_addr] <= bus_in;
-                2'd3: LDM3[ldm_addr] <= bus_in;
+                2'd0: LDM0[ldm_addr] <= alu_out;
+                2'd1: LDM1[ldm_addr] <= alu_out;
+                2'd2: LDM2[ldm_addr] <= alu_out;
+                2'd3: LDM3[ldm_addr] <= alu_out;
             endcase
         end
     end

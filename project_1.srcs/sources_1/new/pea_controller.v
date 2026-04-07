@@ -23,7 +23,7 @@
 // ====================================================================
 
 module pea_controller #(
-    parameter NUM_LAYERS = 16,
+    parameter NUM_LAYERS = 8,
     parameter M          = 40,    // number of PEs
     parameter PIXW       = 16,
     parameter ADDRW      = 8,     // LDM address width inside PE
@@ -324,9 +324,13 @@ module pea_controller #(
                 ST_DONE: begin
                     done    <= 1'b1;
                     cfg_alu <= ALU_PASS;
+                    ld_en   <= 1'b1;
+                    ldm_sel <= 2'd0;
+                    ldm_addr <= 8'd0;
                     // Stay in DONE until a new start pulse arrives
                     if (start) begin
                         done  <= 1'b0;
+                        ld_en <= 1'b0;
                         layer_index <= 0;
                         state <= ST_LOAD_CTX;
                     end
