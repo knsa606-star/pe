@@ -16,7 +16,7 @@
 module mina_top #(
     parameter M          = 40,
     parameter PIXW       = 16,
-    parameter NUM_LAYERS = 16,
+    parameter NUM_LAYERS = 8,
     parameter ADDRW      = 8,     // LDM address width
     parameter WADDRW     = 13,    // weight memory: 8192 entries
     parameter BADDRW     = 7,     // bias   memory: 128 entries
